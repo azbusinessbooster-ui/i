@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Lady Service</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8d7da; /* Soft pink to match the card */
+            color: #000;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(to bottom, #f8d7da, #f5c6cb); /* Gradient for wavy feel */
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23f8d7da" fill-opacity="0.5" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') no-repeat bottom;
+            opacity: 0.8;
+        }
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            font-style: italic; /* To mimic the elegant script font */
+            position: relative;
+        }
+        .logo::before {
+            content: 'C';
+            font-size: 1.5em;
+            position: absolute;
+            top: -20px;
+            left: -30px;
+        }
+        .logo::after {
+            content: 'L';
+            font-size: 1.5em;
+            position: absolute;
+            bottom: -20px;
+            right: -30px;
+        }
+        section {
+            padding: 40px 0;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2em;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        .contact {
+            text-align: center;
+        }
+        .contact p {
+            margin: 5px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f5c6cb;
+            font-size: 0.8em;
+        }
+        /* Customizations: Add a simple contact form */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #f8d7da;
+            border: none;
+            padding: 10px 20px;
+            color: #000;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #f5c6cb;
+        }
+        /* Customization: Service icons (using text emojis for simplicity) */
+        .services li::before {
+            content: '🧹 ';
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Cleaning Lady Service</div>
+        </div>
+    </header>
+
+    <section id="services">
+        <div class="container">
+            <h2>Specializing in:</h2>
+            <ul class="services">
+                <li>Commercial & Residential Cleaning</li>
+                <li>Clean Ups</li>
+                <li>Trash Removal</li>
+            </ul>
+            <p style="text-align: center;">Available on: Bi-Weekly, Weekly, Monthly, One Time</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact">
+                <p>Gavi: 480-326-4071 (Call or text) - We prefer text.</p>
+                <p>Felix (Eng.): 480-774-6850</p>
+            </div>
+            <!-- Customization: Added a simple contact form for inquiries -->
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="tel" placeholder="Your Phone">
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Cleaning Lady Service. All rights reserved.</p>
+    </footer>
+</body>
+</html>
