@@ -1,160 +1,479 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cleaning Lady Service</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8d7da; /* Soft pink to match the card */
-            color: #000;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 50px 0;
-            background: linear-gradient(to bottom, #f8d7da, #f5c6cb); /* Gradient for wavy feel */
-            position: relative;
-            overflow: hidden;
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23f8d7da" fill-opacity="0.5" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>') no-repeat bottom;
-            opacity: 0.8;
-        }
-        .logo {
-            font-size: 3em;
-            font-weight: bold;
-            font-style: italic; /* To mimic the elegant script font */
-            position: relative;
-        }
-        .logo::before {
-            content: 'C';
-            font-size: 1.5em;
-            position: absolute;
-            top: -20px;
-            left: -30px;
-        }
-        .logo::after {
-            content: 'L';
-            font-size: 1.5em;
-            position: absolute;
-            bottom: -20px;
-            right: -30px;
-        }
-        section {
-            padding: 40px 0;
-        }
-        h2 {
-            text-align: center;
-            font-size: 2em;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            text-align: center;
-        }
-        ul li {
-            margin: 10px 0;
-        }
-        .contact {
-            text-align: center;
-        }
-        .contact p {
-            margin: 5px 0;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #f5c6cb;
-            font-size: 0.8em;
-        }
-        /* Customizations: Add a simple contact form */
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #f8d7da;
-            border: none;
-            padding: 10px 20px;
-            color: #000;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        button:hover {
-            background-color: #f5c6cb;
-        }
-        /* Customization: Service icons (using text emojis for simplicity) */
-        .services li::before {
-            content: '🧹 ';
-            font-size: 1.2em;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Cleaning Lady Service — Commercial & Residential Cleaning, Clean Ups, Trash Removal. Weekly, Bi-Weekly, Monthly, One-time." />
+  <title>Cleaning Lady Service</title>
+
+  <style>
+    :root{
+      --bg1:#f5b7bf;      /* soft pink */
+      --bg2:#eaa3ad;      /* deeper pink */
+      --ink:#0b0b0f;      /* near-black */
+      --muted:#2b2b33;
+      --card:rgba(255,255,255,.62);
+      --card2:rgba(255,255,255,.42);
+      --stroke:rgba(10,10,15,.14);
+      --shadow: 0 18px 40px rgba(10,10,20,.18);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.5;
+      overflow-x:hidden;
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(900px 700px at 85% 30%, rgba(255,255,255,.22), transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+    }
+
+    /* Topographic lines overlay */
+    .topo{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.28;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='700' viewBox='0 0 900 700'%3E%3Cg fill='none' stroke='%230b0b0f' stroke-opacity='0.25' stroke-width='1'%3E%3Cpath d='M40 120c90-70 190-40 270 0s160 70 240 45 120-90 240-60'/%3E%3Cpath d='M10 190c120-80 220-50 320-5s180 75 270 40 150-100 290-60'/%3E%3Cpath d='M-10 260c150-80 260-55 380 0s200 85 305 35 155-105 310-60'/%3E%3Cpath d='M-40 330c160-70 290-60 420 5s215 95 330 30 155-110 300-70'/%3E%3Cpath d='M-60 400c170-60 310-65 450 10s230 105 350 25 160-110 290-75'/%3E%3Cpath d='M-80 470c180-55 340-60 500 20s250 110 360 10 150-95 260-70'/%3E%3Cpath d='M-100 540c200-55 380-55 560 25s270 115 380-5 140-80 230-55'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 1100px 850px;
+      background-position: center;
+      mix-blend-mode: multiply;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(var(--max), 92vw); margin:0 auto; padding: 26px 0 72px; }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding: 14px 0 10px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    /* CL logo */
+    .logo{
+      width:48px; height:48px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.45);
+      box-shadow: 0 10px 26px rgba(10,10,20,.18);
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:before{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.65), transparent 55%),
+                  radial-gradient(circle at 70% 80%, rgba(255,255,255,.35), transparent 55%);
+      transform: rotate(12deg);
+    }
+    .logo span{
+      position:relative;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      letter-spacing:-2px;
+      line-height:1;
+    }
+
+    .nav{
+      display:flex;
+      gap:16px;
+      font-weight:600;
+      color: rgba(11,11,15,.78);
+    }
+    .nav a{
+      padding:10px 12px;
+      border-radius: 999px;
+      transition: .2s ease;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,.35);
+      border: 1px solid rgba(255,255,255,.35);
+    }
+
+    .hero{
+      margin-top: 18px;
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid rgba(255,255,255,.42);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 26px;
+      padding: 34px;
+    }
+    @media (max-width: 920px){
+      .hero-inner{ grid-template-columns: 1fr; padding: 26px; }
+      .nav{ display:none; }
+    }
+
+    .kicker{
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size: 12px;
+      color: rgba(11,11,15,.65);
+    }
+
+    h1{
+      margin:10px 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height: 1.05;
+      letter-spacing:-.6px;
+    }
+    .subtitle{
+      margin: 0 0 18px;
+      font-size: 16px;
+      color: rgba(11,11,15,.78);
+      max-width: 62ch;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 18px 0 22px;
+    }
+    .pill{
+      font-size: 13px;
+      font-weight:700;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.42);
+      color: rgba(11,11,15,.84);
+      backdrop-filter: blur(6px);
+    }
+
+    .cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top: 10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid rgba(11,11,15,.18);
+      transition: .2s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background: rgba(11,11,15,.92);
+      color: #fff;
+      border-color: rgba(11,11,15,.25);
+      box-shadow: 0 12px 26px rgba(10,10,20,.22);
+    }
+    .btn-primary:hover{ transform: translateY(-1px); }
+    .btn-ghost{
+      background: rgba(255,255,255,.52);
+      color: rgba(11,11,15,.88);
+    }
+    .btn-ghost:hover{ background: rgba(255,255,255,.66); }
+
+    .hero-side{
+      border-left: 1px solid rgba(11,11,15,.10);
+      padding-left: 22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:16px;
+    }
+    @media (max-width: 920px){
+      .hero-side{ border-left:none; padding-left:0; border-top: 1px solid rgba(11,11,15,.10); padding-top: 18px; }
+    }
+
+    .card{
+      background: rgba(255,255,255,.52);
+      border: 1px solid rgba(255,255,255,.42);
+      border-radius: var(--radius2);
+      padding: 16px;
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size: 14px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color: rgba(11,11,15,.70);
+    }
+    .card p{ margin:0; font-weight:800; font-size: 18px; }
+    .tiny{ font-size: 13px; color: rgba(11,11,15,.72); font-weight:600; margin-top:6px; }
+
+    section{
+      margin-top: 22px;
+      display:grid;
+      gap: 16px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-8{ grid-column: span 8; }
+    @media (max-width: 920px){
+      .col-6,.col-4,.col-8{ grid-column: 1 / -1; }
+    }
+
+    .feature{
+      background: rgba(255,255,255,.50);
+      border: 1px solid rgba(255,255,255,.40);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 26px rgba(10,10,20,.10);
+    }
+    .feature h2{
+      margin:0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing:-.2px;
+    }
+    ul.clean{
+      margin: 10px 0 0;
+      padding: 0 0 0 18px;
+      color: rgba(11,11,15,.82);
+      font-weight: 650;
+    }
+    ul.clean li{ margin: 8px 0; }
+
+    .contact{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      font-weight:800;
+      font-size: 16px;
+    }
+    .contact a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.56);
+      border: 1px solid rgba(255,255,255,.42);
+      transition:.2s ease;
+    }
+    .contact a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.66); }
+    .label{ color: rgba(11,11,15,.72); font-weight:800; font-size: 12px; letter-spacing:.08em; text-transform:uppercase; }
+
+    footer{
+      margin-top: 22px;
+      padding-top: 14px;
+      color: rgba(11,11,15,.70);
+      font-weight:600;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="topo" aria-hidden="true"></div>
+
+  <div class="wrap">
     <header>
-        <div class="container">
-            <div class="logo">Cleaning Lady Service</div>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span>CL</span></div>
+        <div>
+          <div class="kicker">Cleaning Lady Service</div>
+          <div style="font-weight:900; font-size:14px; letter-spacing:.02em; color:rgba(11,11,15,.85);">
+            Professional • Elegant • Reliable
+          </div>
         </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#plans">Schedule</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <section id="services">
-        <div class="container">
-            <h2>Specializing in:</h2>
-            <ul class="services">
-                <li>Commercial & Residential Cleaning</li>
-                <li>Clean Ups</li>
-                <li>Trash Removal</li>
-            </ul>
-            <p style="text-align: center;">Available on: Bi-Weekly, Weekly, Monthly, One Time</p>
+    <main class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker">Specializing in</div>
+          <h1>Commercial &amp; Residential Cleaning<br/>that feels effortless.</h1>
+          <p class="subtitle">
+            We handle the details — from routine cleans to clean ups and trash removal — with a professional, polished finish.
+          </p>
+
+          <div class="pill-row" aria-label="Highlights">
+            <div class="pill">Commercial &amp; Residential</div>
+            <div class="pill">Clean Ups</div>
+            <div class="pill">Trash Removal</div>
+            <div class="pill">One-time or Recurring</div>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contact">Get a Quote</a>
+            <a class="btn btn-ghost" href="sms:+14803266071?&body=Hi%20Cleaning%20Lady%20Service!%20I%E2%80%99d%20like%20a%20quote%20for%20cleaning.">Text Gavi</a>
+            <a class="btn btn-ghost" href="tel:+14807646850">Call Felix (eng)</a>
+          </div>
+
+          <div class="tiny" style="margin-top:12px;">
+            Text preferred • Fast responses • Clear pricing
+          </div>
         </div>
+
+        <aside class="hero-side">
+          <div class="card">
+            <h3>Preferred Contact</h3>
+            <p>Text Gavi</p>
+            <div class="tiny">480-326-6071</div>
+          </div>
+
+          <div class="card">
+            <h3>English</h3>
+            <p>Felix (eng)</p>
+            <div class="tiny">480-764-6850</div>
+          </div>
+
+          <div class="card">
+            <h3>Availability</h3>
+            <p>Flexible scheduling</p>
+            <div class="tiny">Weekly • Bi-Weekly • Monthly • One-time</div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <section id="services" aria-label="Services">
+      <div class="grid">
+        <div class="feature col-8">
+          <h2>Services</h2>
+          <ul class="clean">
+            <li><strong>Commercial &amp; Residential Cleaning</strong> — consistent, detailed, professional results.</li>
+            <li><strong>Clean Ups</strong> — move-outs, deep cleans, and special situations.</li>
+            <li><strong>Trash Removal</strong> — quick and convenient removal as needed.</li>
+          </ul>
+        </div>
+
+        <div class="feature col-4">
+          <h2>What you’ll notice</h2>
+          <ul class="clean">
+            <li>Clean edges &amp; finishes</li>
+            <li>Respectful, professional service</li>
+            <li>Simple communication</li>
+            <li>Reliable scheduling</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact">
-                <p>Gavi: 480-326-4071 (Call or text) - We prefer text.</p>
-                <p>Felix (Eng.): 480-774-6850</p>
-            </div>
-            <!-- Customization: Added a simple contact form for inquiries -->
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="tel" placeholder="Your Phone">
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
+    <section id="plans" aria-label="Scheduling">
+      <div class="grid">
+        <div class="feature col-6">
+          <h2>Scheduling Options</h2>
+          <ul class="clean">
+            <li><strong>Weekly</strong> — ideal for homes &amp; busy spaces.</li>
+            <li><strong>Bi-Weekly</strong> — balanced upkeep.</li>
+            <li><strong>Monthly</strong> — maintenance cleaning.</li>
+            <li><strong>One-time</strong> — clean up or deep clean.</li>
+          </ul>
         </div>
+
+        <div class="feature col-6">
+          <h2>How it works</h2>
+          <ul class="clean">
+            <li>Text us what you need (address + type of service).</li>
+            <li>We confirm details and give a quote.</li>
+            <li>We schedule and complete the cleaning.</li>
+            <li>You enjoy a spotless space.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Contact">
+      <div class="grid">
+        <div class="feature col-6">
+          <h2>Contact</h2>
+          <div class="contact" role="list">
+            <a role="listitem" href="sms:+14803266071?&body=Hi%20Cleaning%20Lady%20Service!%20I%E2%80%99d%20like%20to%20get%20a%20quote.%20My%20address%20is%20____%20and%20I%20need%20____.">
+              <div>
+                <div class="label">Text preferred</div>
+                Gavi — 480-326-6071
+              </div>
+              <div aria-hidden="true">↗</div>
+            </a>
+
+            <a role="listitem" href="tel:+14803266071">
+              <div>
+                <div class="label">Call</div>
+                Gavi — 480-326-6071
+              </div>
+              <div aria-hidden="true">☎</div>
+            </a>
+
+            <a role="listitem" href="tel:+14807646850">
+              <div>
+                <div class="label">English</div>
+                Felix (eng) — 480-764-6850
+              </div>
+              <div aria-hidden="true">☎</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="feature col-6">
+          <h2>Request a Quote</h2>
+          <p style="margin:0; color:rgba(11,11,15,.80); font-weight:650;">
+            For the fastest quote, text:
+          </p>
+          <ul class="clean">
+            <li>Service needed (Commercial / Residential / Clean up / Trash removal)</li>
+            <li>Frequency (Weekly / Bi-Weekly / Monthly / One-time)</li>
+            <li>Approx. size (beds/baths or sqft if you know it)</li>
+            <li>Preferred date/time</li>
+          </ul>
+
+          <div class="cta-row" style="margin-top:14px;">
+            <a class="btn btn-primary" href="sms:+14803266071?&body=Hi%20Cleaning%20Lady%20Service!%20Service:%20____%20Frequency:%20____%20Address:%20____%20Size:%20____%20Preferred%20date/time:%20____">Text Quote Details</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Cleaning Lady Service. All rights reserved.</p>
+      <div>© <span id="y"></span> Cleaning Lady Service</div>
+      <div style="opacity:.9;">Commercial &amp; Residential Cleaning • Clean Ups • Trash Removal</div>
     </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
